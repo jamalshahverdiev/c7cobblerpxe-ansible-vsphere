@@ -1,0 +1,48 @@
+---
+- hosts: all
+  gather_facts: false
+  connection: local
+  become_user: jshahverdiev
+  become: true
+
+  vars:
+    vc_host: '{{ vcenterip }}'
+    vc_user: '{{ vcenterusername }}'
+    vc_pass: '{{ vcenterpassword }}'
+    res_pool: '/Resources/{{ resourcepoolname }}'
+    datacenter: '{{ datacentername }}'
+    esxi_host: '{{ esxihostip }}'
+    notes: 'Created by Ansible'
+    VmCluster: '{{ clustername }}'
+{% raw %}
+  tasks:
+    - vsphere_guest:
+        validate_certs: no
+        vcenter_hostname: "{{ vc_host }}"
+        username: "{{ vc_user }}"
+        password: "{{ vc_pass }}"
+        guest: "{{ inventory_hostname }}"
+        cluster: "{{ VmCluster }}"
+        resource_pool: "{{ res_pool }}"
+        state: powered_on
+        vm_extra_config:
+          notes: "{{ notes }}"
+        vm_disk:
+          disk1:
+            size_gb: "{{ disk }}"
+            type: thin
+            datastore: "{{ datastore }}"
+        vm_nic:
+          nic1:
+            type: vmxnet3
+            network: "{{ network }}"
+            network_type: standard
+        vm_hardware:
+          memory_mb: "{{ memory }}"
+          num_cpus: "{{ cpucount }}"
+          osid: "{{ osid }}"
+          scsi: paravirtual
+        esxi:
+          datacenter: "{{ datacenter }}"
+          hostname: "{{ esxi_host }}"
+{% endraw %}

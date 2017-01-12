@@ -1,0 +1,30 @@
+---
+- hosts: all
+  gather_facts: false
+  connection: local
+  become_user: jshahverdiev
+  become: true
+
+  vars:
+    vc_host: '10.50.94.10'
+    vc_user: 'administrator@vsphere.local'
+    vc_pass: 'A123456789a!'
+    res_pool: '/Resources/dev'
+    datacenter: 'Datacenter'
+    esxi_host: '10.50.94.9'
+    notes: 'Created by Ansible'
+    VmCluster: 'Cluster'
+    VMtemplate: 'c7box2nc'
+    ISOs: 'datastore1_1/Install/'
+
+  tasks:
+    - vsphere_guest:
+        validate_certs: no
+        vcenter_hostname: "{{ vc_host }}"
+        username: "{{ vc_user }}"
+        password: "{{ vc_pass }}"
+        guest: "{{ inventory_hostname }}"
+        from_template: yes
+        template_src: "{{ VMtemplate }}"
+        cluster: "{{ VmCluster }}"
+        resource_pool: "{{ res_pool }}"

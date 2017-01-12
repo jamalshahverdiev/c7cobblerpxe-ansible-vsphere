@@ -1,0 +1,18 @@
+DEFAULT menu
+PROMPT 0
+MENU TITLE Cobbler | http://cobbler.github.io
+TIMEOUT 10
+TOTALTIMEOUT 20
+ONTIMEOUT {{ distro_name }}
+
+LABEL {{ distro_name }}
+        kernel /images/{{ distro_name }}/vmlinuz
+        MENU LABEL {{ distro_name }}
+        MENU DEFAULT
+        append initrd=/images/{{ distro_name }}/initrd.img ksdevice=bootif lang=  kssendmac text  ks=http://{{ lanip }}/cblr/svc/op/ks/profile/{{ distro_name }}
+        ipappend 2
+
+
+
+MENU end
+
