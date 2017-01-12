@@ -1,6 +1,7 @@
-###CentOS PXE Server
+###Cobbler PXE server with Ansible Vsphere deploy virtual machines
 
-#####In this artcile I will show how to install and configure PXE server in CentOS7 with python script. Python script must be executed on Linux admin laptop and admin laptop must see server subnet. Script takes login, password, IP address of CentOS7 server and then install/configure needed packages to the server. In the server, network card must be minimum 2, because with the internal network card it will share DHCP subnet and configure NAT with external IP to give access to the lan subnet. CDROM must be inserted with CentOS7 image. If in the server will not be minimum 2 network card and CDROM will not be inserted(even cdrom will be mounted to the server before script execution) with CentOS7 image script give us notification about this. To install CentOS7 with PXE, client machine must be in the same subnet to see DHCP server. I used vmnet10 in the virtual machines. To install CentOS7 via PXE there are will be 3 options. Install from repo server, install from internet and install with VNC. To use VNC server we must write vnc password. About vnc password script will ask you to write. 
+#####This article shows us how to configure Cobbler PXE sevrer for automatic deploying Virtual Machines in our Virtual Environment(vCphere). For that I wrote script. For this script I have used Python with libraries(Jinja2, Fabric, OS, Sys etc.) and Ansible with Vsphere module. Script gives us the following menu:
+![run script](images/run.png)
 
 #####Our topology will be as following:
 ![PXE topology](images/Topology.JPG)
