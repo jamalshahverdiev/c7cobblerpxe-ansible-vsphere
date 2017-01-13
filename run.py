@@ -13,8 +13,7 @@ choose = ""
 
 while choose != "3":
     print("Choose one of the following options:")
-    print("""1. To create and deploy pxe server from '+template+' type 1 and press '+enter+'. 
-   To create required VM template use link -> https://github.com/jamalshahverdiev/vagrant-vsphere-ansible""")
+    print('1. To create and deploy pxe server from '+template+' type 1 and press '+enter+'. \n   To create required VM template use link -> https://github.com/jamalshahverdiev/vagrant-vsphere-ansible')
     print('2. To install and configure PXE server '+pxecobbler+', type 2 and press '+enter+'.')
     print('3. To deploy empty '+virtms+' type 3 and press '+enter+'. ')
     print('4. To '+exit+' press '+enter+'.')
