@@ -22,7 +22,7 @@ while choose != "3":
     choose = raw_input("  Please choose the installation option: ")
     print('')
     if choose == "1":
-        subprocess.call("sudo ansible-playbook -i ansible-pxe-create/create_vm_hosts ansible-pxe-create/create_vms.yml", shell=True)
+        subprocess.call("sudo ansible-playbook -i ansible-pxe-create/vm_hosts ansible-pxe-create/vms.yml", shell=True)
         print("")
         print("")
     elif choose == "2":

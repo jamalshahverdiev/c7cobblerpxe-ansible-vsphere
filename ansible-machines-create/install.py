@@ -19,8 +19,8 @@ templateLoader = jinja2.FileSystemLoader( searchpath=jinjadir )
 templateEnv = jinja2.Environment( loader=templateLoader )
 
 TEMPKICKS = 'CentOS-7.ks.j2'
-TEMPYML = 'create_vms.yml.j2'
-TEMPINVENT = 'create_vm_hosts.j2'
+TEMPYML = 'vms.yml.j2'
+TEMPINVENT = 'vm_hosts.j2'
 
 tempks = templateEnv.get_template( TEMPKICKS )
 tempyml = templateEnv.get_template( TEMPYML )
@@ -101,10 +101,10 @@ def tempconfiger(ifip, submask, distro_name, rootps, gateip, vcenterip, vcenteru
     with open(outputdir+'CentOS-7.ks', 'wb') as kickfile:
         kickfile.write(outputksText)
 
-    with open(outputdir+'create_vms.yml', 'wb') as ymlfile:
+    with open(outputdir+'vms.yml', 'wb') as ymlfile:
         ymlfile.write(outputymlText)
 
-    with open(outputdir+'create_vm_hosts', 'wb') as hostsfile:
+    with open(outputdir+'vm_hosts', 'wb') as hostsfile:
         hostsfile.write(outputinvtText)
 
 def variables():
@@ -124,7 +124,7 @@ def put_func():
 def executer():
     tempconfiger(ifip, submask, distro_name, rootps, gateip, vcenterip, vcenterusername, vcenterpassword, resourcepoolname, datacentername, esxihostip, clustername, vm_name)
     put_func()
-    subprocess.call('sudo ansible-playbook -i '+outputdir+'/create_vm_hosts '+outputdir+'/create_vms.yml', shell=True)
+    subprocess.call('sudo ansible-playbook -i '+outputdir+'/vm_hosts '+outputdir+'/vms.yml', shell=True)
     time.sleep(600)
 
 with settings(hide('warnings', 'running', 'stdout', 'stderr'), warn_only=True):
