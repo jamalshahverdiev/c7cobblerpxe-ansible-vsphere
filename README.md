@@ -16,7 +16,7 @@
 #####Get cloned virtual machine IP address. Login and password you must know because, you have created this. Don't forget insert CentOS7 image to virtual machine CDROM.
 ![PXEserverIP](images/pxecobblerIP.png)
 
-#####Then press 2 and input details(Login, pass etc.) for already cloned new machine to install and configure Cobbler PXE server.
+#####Then press 2 and input details(Login, pass etc.) for already cloned new machine to install and configure Cobbler PXE server. It will install and configure NAT, DHCP server.
 ![Option-2](images/opntion-2.png)
 
 #####At the end press 3 to deploy virtual machines with different setting in our ESXi's. We must input PXE credentials(IP, login, pass) and Vcenter credentials(IP, login, pass, Resource pool name, Datacenter name, Cluster name and ESXI IP). It is will be execute "ansible-machines-create/install.py" script file. Don't forget this scripts will install and configure 4 new virtual machines and all of them will be CentOS7. But, if you want to change this to different OS then, you must create you own kickstart file and put it on Cobbler PXE server(Of course import and add new system to cobbler server too). To change to different host profile which you added in Cobbler server change "distro_name" variable in the "ansible-machines-create/install.py" file. To use different Kickstart file just change "ansible-machines-create/jinja2temps/CentOS-7.ks.j2" with your own Jinja variables. If you want use different IP addresses for your topology just change "range(2, 6)" in line "145" and set IP address for selected virtual machine in "if" lines. If you want to add more virtual machines just add names in the "virtmaes" variable in line "118".
