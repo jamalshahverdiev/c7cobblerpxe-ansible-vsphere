@@ -13,7 +13,7 @@
 ![Option-1-result1](images/option-1-result1.png)
 ![Option-1-result2](images/option-1-result2.png)
 
-#####Get cloned virtual machine IP address. Login and password you must know because, you have created this. Don't forget insert CentOS7 image to virtual machine CDROM.
+#####Get cloned virtual machine IP address. Login and password you must know because, you have created this. Don't forget insert CentOS7 image to virtual machine CDROM otherwise, script prompt information about this.
 ![PXEserverIP](images/pxecobblerIP.png)
 
 #####Then press 2 and input details(Login, pass etc.) for already cloned new machine to install and configure Cobbler PXE server. It will install and configure NAT, DHCP server.
