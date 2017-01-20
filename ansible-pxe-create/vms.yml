@@ -8,7 +8,7 @@
   vars:
     vc_host: '10.50.94.10'
     vc_user: 'administrator@vsphere.local'
-    vc_pass: 'A123456789a!'
+    vc_pass: 'pass_for_vcenter'
     res_pool: '/Resources/dev'
     datacenter: 'Datacenter'
     esxi_host: '10.50.94.9'
