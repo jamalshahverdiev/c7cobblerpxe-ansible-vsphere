@@ -41,11 +41,14 @@ Requirements:
 
 * If you want to delete created virtual machines just use "delete_vms.sh" script file.
 * I have used this scripts in my Fedora laptop. To use this script you must install Python and needed libraries::
-     # dnf install python
-     # python -m ensurepip
-     $ sudo python -m pip install -r requirement.txt
+
+     dnf install python
+     python -m ensurepip
+     sudo python -m pip install -r requirement.txt
 
 * To download this codes and run use the following commands::
-     # git clone https://github.com/jamalshahverdiev/c7cobblerpxe-ansible-vpshere.git
-     # cd c7cobblerpxe-ansible-vpshere
-     $ sudo ./run.py
+
+     git clone https://github.com/jamalshahverdiev/c7cobblerpxe-ansible-vpshere.git
+     cd c7cobblerpxe-ansible-vpshere
+     sudo ./run.py
+
