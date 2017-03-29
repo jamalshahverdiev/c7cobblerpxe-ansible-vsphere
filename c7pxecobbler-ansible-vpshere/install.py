@@ -79,7 +79,7 @@ def variables():
     global checkcdrom
     checkcdrom = run('mount -o loop /dev/cdrom /mnt')
     global mountedcdrom
-    mountedcdrom = run('cat /proc/mounts | grep iso9660 | head -1').split()[2]
+    mountedcdrom = run('cat /proc/mounts | grep iso9660 | head -1 | awk \'{ print $2 }\'')
     global netcardcount
     netcardcount = run('cat /proc/net/dev | egrep -v \'Inter|face|lo\' | cut -f1 -d\':\' | wc -l')
     global extcard
