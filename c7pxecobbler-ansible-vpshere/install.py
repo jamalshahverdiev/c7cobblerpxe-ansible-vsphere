@@ -71,7 +71,7 @@ def variables():
     global osver
     osver = run('uname -s')
     global lintype
-    lintype = run('cat /etc/centos-release | awk \'{ print $1 }\'')
+    lintype = run('cat /etc/centos-release').split()[0]
     global getcosver
     getcosver = run('rpm -q --queryformat \'%{VERSION}\' centos-release')
     global netcards
@@ -79,11 +79,12 @@ def variables():
     global checkcdrom
     checkcdrom = run('mount -o loop /dev/cdrom /mnt')
     global mountedcdrom
-    mountedcdrom = run('cat /proc/mounts | grep iso9660 | head -1 | awk \'{ print $3 }\'')
+    mountedcdrom = run('cat /proc/mounts | grep iso9660 | head -1').split()[2]
     global netcardcount
     netcardcount = run('cat /proc/net/dev | egrep -v \'Inter|face|lo\' | cut -f1 -d\':\' | wc -l')
     global extcard
-    extcard = run('ip a | grep '+env.host_string+' | awk \'{ print $NF }\'')
+    #extcard = run('ip a | grep '+env.host_string+' | awk \'{ print $NF }\'')
+    extcard = run('ip a | grep '+env.host_string+'').split()[-1]
 
 servicelist = ['cobblerd', 'dnsmasq', 'httpd', 'rsyncd', 'xinetd', 'network', 'firewalld', 'ntpd']
 
@@ -136,15 +137,15 @@ def put_func():
 
 def after_install_vars():
     global cobblerservice
-    cobblerservice = run('ps waux | grep \'/usr/bin/cobblerd\' | grep -v grep | awk \'{ print $12 }\'')
+    cobblerservice = run('ps waux | grep \'/usr/bin/cobblerd\' | grep -v grep').split()[-2]
     global dmasqservice
-    dmasqservice = run('ps waux| grep dnsmasq | grep -v grep | awk \'{ print $11 }\'')
+    dmasqservice = run('ps waux| grep dnsmasq | grep -v grep').split()[-2]
     global httpdservice
-    httpdservice = run('ps waux | grep \'httpd\' | grep \'^root\' | grep -v grep | awk \'{ print $11 }\'')
+    httpdservice = run('ps waux | grep \'httpd\' | grep \'^root\' | grep -v grep').split()[-2]
     global xinetdservice
-    xinetdservice = run('ps waux | grep xinetd | grep -v grep | awk \'{ print $11 }\'')
+    xinetdservice = run('ps waux | grep xinetd | grep -v grep').split()[-4]
     global netcardip
-    netcardip = run('ifconfig '+intiface+' | grep \'inet \' | awk \'{ print $2 }\'')
+    netcardip = run('ifconfig '+intiface+' | grep \'inet \'').split()[1]
 
 def natconfiger(intiface, extiface):
     run('systemctl start firewalld')
