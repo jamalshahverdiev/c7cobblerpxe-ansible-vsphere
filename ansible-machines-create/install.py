@@ -125,7 +125,7 @@ def executer():
     tempconfiger(ifip, submask, distro_name, rootps, gateip, vcenterip, vcenterusername, vcenterpassword, resourcepoolname, datacentername, esxihostip, clustername, vm_name)
     put_func()
     subprocess.call('sudo ansible-playbook -i '+outputdir+'/vm_hosts '+outputdir+'/vms.yml', shell=True)
-    time.sleep(300)
+    time.sleep(100)
 
 with settings(hide('warnings', 'running', 'stdout', 'stderr'), warn_only=True):
     variables()
